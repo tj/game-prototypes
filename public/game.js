@@ -140,10 +140,11 @@ o(function(){
   }
 
   setInterval(function(){
-    
-  }, 100);
+    var off = o('#cat').offset();
+    lookat(off.left, off.top);
+  }, 200);
 
   o(document).mousemove(function(e){
-    lookat(e.clientX, e.clientY);
+    // lookat(e.clientX, e.clientY);
   });
 });
