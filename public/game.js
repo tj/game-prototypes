@@ -43,7 +43,7 @@ o(function(){
   birds.each = [].forEach;
   function loop() {
     birds.each(function(el, i){
-      var x = window.innerWidth / 2;
+      var x = window.innerWidth / 2 + i * 50;
       move(el)
         .y(0)
         .x(x)
