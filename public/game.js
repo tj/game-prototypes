@@ -23,7 +23,7 @@ o(function(){
   walk();
 });
 
-// birds
+// bird sprites
 
 o(function(){
   var birds = document.querySelectorAll('.bird');
