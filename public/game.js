@@ -44,28 +44,27 @@ o(function(){
   var birds = document.querySelectorAll('.bird');
   birds.each = [].forEach;
 
-  function loop() {
-    birds.each(function(el){
-      var width = window.innerWidth
-        , x = max(width / 2, Math.random() * width | 0)
-        , duration = max(5000, Math.random() * 8000 | 0)
-        , y = Math.random() * 200 | 0;
-
-      move(el)
-        .y(y)
-        .x(x)
-        .scale(Math.random())
+  function loop(el) {
+    var width = window.innerWidth
+      , duration = max(5000, Math.random() * 8000 | 0)
+      , x = max(width / 2, Math.random() * width | 0)
+      , y = Math.random() * 200 | 0
+      , scale = Math.random();
+    
+    move(el)
+      .y(y)
+      .x(x)
+      .scale(scale)
+      .duration(duration)
+      .then()
         .duration(duration)
-        .then()
-          .duration(duration)
-          .x(-x)
-          .then(loop)
-          .pop()
-        .end();
-    });
+        .x(-x)
+        .then(function(){ loop(el); })
+        .pop()
+      .end();
   }
 
-  loop();
+  birds.each(loop);
 });
 
 // hills
