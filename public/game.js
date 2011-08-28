@@ -42,14 +42,15 @@ o(function(){
   var birds = document.querySelectorAll('.bird');
   birds.each = [].forEach;
   function loop() {
-    birds.each(function(el){
+    birds.each(function(el, i){
+      var x = window.innerWidth / 2;
       move(el)
         .y(0)
-        .x(window.innerWidth / 2)
+        .x(x)
         .duration('8s')
         .then()
           .duration('8s')
-          .x(-window.innerWidth / 2)
+          .x(-x)
           .then(loop)
           .pop()
         .end();
