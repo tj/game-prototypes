@@ -139,12 +139,19 @@ o(function(){
     rightEye.css('left', min(rebw, max(0, x - rebx)));
   }
 
+  // when idle look at the chaton
   setInterval(function(){
-    var off = o('#cat').offset();
-    lookat(off.left, off.top);
-  }, 200);
+    if (!prev) {
+      var off = o('#cat').offset();
+      lookat(off.left, off.top);
+    }
+    prev = null;
+  }, 500);
 
+  // look at cursor
+  var prev;
   o(document).mousemove(function(e){
-    // lookat(e.clientX, e.clientY);
+    prev = e;
+    lookat(e.clientX, e.clientY);
   });
 });
