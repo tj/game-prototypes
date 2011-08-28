@@ -1,5 +1,7 @@
 
-var o = $;
+var o = $
+  , min = Math.min
+  , max = Math.max;
 
 // cat
 
@@ -43,13 +45,14 @@ o(function(){
   birds.each = [].forEach;
   function loop() {
     birds.each(function(el, i){
-      var x = window.innerWidth / 2 + i * 50;
+      var x = window.innerWidth / 2 + i * 50
+        , duration = max(5000, Math.random() * 8000 | 0);
       move(el)
         .y(0)
         .x(x)
-        .duration('8s')
+        .duration(duration)
         .then()
-          .duration('8s')
+          .duration(duration)
           .x(-x)
           .then(loop)
           .pop()
