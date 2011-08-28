@@ -34,6 +34,31 @@ o(function(){
   });
 });
 
+// hills
+
+o(function(){
+  var hills = o('.hill, #fence')
+    , intensity = .005
+    , offsets = hills.map(function(i){
+      off = o(this).offset();
+      off.intensity = intensity / ++i;
+      return off;
+    });
+
+  o(document).mousemove(function(e){
+    var x = e.clientX
+      , y = e.clientY;
+
+    hills.each(function(i){
+      var off = offsets[i];
+      o(this).css({
+          top: off.top
+        , left: off.left - x * off.intensity
+      });
+    });
+  });
+});
+
 // guy
 
 o(function(){
