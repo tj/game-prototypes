@@ -43,6 +43,7 @@ o(function(){
 o(function(){
   var birds = document.querySelectorAll('.bird');
   birds.each = [].forEach;
+
   function loop() {
     birds.each(function(el){
       var half = window.innerWidth / 2
@@ -55,6 +56,7 @@ o(function(){
       move(el)
         .y(y)
         .x(x)
+        .scale(Math.random())
         .duration(duration)
         .then()
           .duration(duration)
