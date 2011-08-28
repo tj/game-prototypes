@@ -1,0 +1,197 @@
+body {
+  background: url(images/bg.jpg);
+}
+#guy {
+  position: absolute;
+  top: 130px;
+  left: 400px;
+  width: 164px;
+  height: 343px;
+  background: url(images/guy.png);
+}
+#guy-hat {
+  position: absolute;
+  top: -60px;
+  left: 10px;
+  width: 110px;
+  height: 103px;
+  background: url(images/hat.png) no-repeat;
+  z-index: 10;
+}
+#guy-eye-left-bounds {
+  position: absolute;
+  top: 25px;
+  left: 65px;
+  width: 20px;
+  height: 52px;
+}
+#guy-eye-left {
+  position: absolute;
+  width: 14px;
+  height: 17px;
+  background: url(images/guy-eye-left.png);
+  -webkit-transition: top 300ms ease-out, left 300ms ease-out;
+}
+#guy-eye-right-bounds {
+  position: absolute;
+  top: 65px;
+  left: 120px;
+  width: 10px;
+  height: 18px;
+}
+#guy-eye-right {
+  position: absolute;
+  width: 9px;
+  height: 11px;
+  background: url(images/guy-eye-right.png);
+  -webkit-transition: top 100ms ease-out, left 100ms ease-out;
+}
+#guy-shadow {
+  position: relative;
+  top: 320px;
+  left: 70px;
+  width: 102px;
+  height: 47px;
+  background: url(images/guy-shadow.png) no-repeat;
+  background-size: 90px 40px;
+}
+#hill-3 {
+  position: absolute;
+  top: 137px;
+  left: 381px;
+  width: 446px;
+  height: 314px;
+  background: url(images/hill-3.png) no-repeat;
+}
+#hill-2 {
+  position: absolute;
+  top: 398px;
+  left: 219px;
+  width: 302px;
+  height: 166px;
+  background: url(images/hill-2.png) no-repeat;
+  z-index: 5;
+}
+#hill-1 {
+  position: absolute;
+  top: 404px;
+  left: 366px;
+  width: 486px;
+  height: 165px;
+  background: url(images/hill-1.png) no-repeat;
+  z-index: 10;
+}
+#cat {
+  position: absolute;
+  top: 440px;
+  left: 540px;
+  width: 53px;
+  height: 60px;
+  background: url(images/cat.png) no-repeat;
+  z-index: 20;
+}
+#fence {
+  position: absolute;
+  top: 222px;
+  left: 406px;
+  width: 396px;
+  height: 272px;
+  background: url(images/fence.png) no-repeat;
+  z-index: 15;
+}
+#fence-shadow {
+  position: absolute;
+  top: 188px;
+  left: 276px;
+  width: 121px;
+  height: 111px;
+  background: url(images/fence-shadow.png) no-repeat;
+}
+.grass {
+  z-index: 25;
+}
+#grass-1 {
+  position: absolute;
+  top: 457px;
+  left: 614px;
+  width: 20px;
+  height: 46px;
+  background: url(images/grass.png) no-repeat;
+}
+#grass-2,
+#grass-3,
+#grass-4 {
+  position: absolute;
+  top: 438px;
+  left: 738px;
+  width: 10px;
+  height: 22px;
+  background: url(images/grass-tiny.png) no-repeat;
+}
+#grass-3 {
+  top: 430px;
+  left: 559px;
+}
+#grass-4 {
+  top: 450px;
+  left: 692px;
+  -webkit-transform: rotate(-20deg);
+}
+#help {
+  position: absolute;
+  font: 11px arial;
+  padding: 5px;
+  z-index: 1000;
+  background: rgba(0,0,0,.4);
+  -webkit-border-radius: 3px;
+  color: white;
+}
+#bird-1 {
+  top: 103px;
+  left: 310px;
+}
+#bird-2 {
+  top: 93px;
+  lefT: 272px;
+  -webkit-transform: scale(.75);
+  opacity: .75;
+}
+#bird-3 {
+  top: 85px;
+  left: 240px;
+  -webkit-transform: scale(.50);
+  opacity: .5;
+}
+.bird {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  width: 50px;
+  height: 50px;
+/*  border: 1px solid red;*/
+  background-repeat: no-repeat;
+  background-image: url(images/bird-0.png);
+}
+.bird-0 { background-image: url(images/bird-0.png); }
+.bird-1 { background-image: url(images/bird-1.png); }
+.bird-2 { background-image: url(images/bird-2.png); }
+.bird-3 { background-image: url(images/bird-3.png); }
+.bird-4 { background-image: url(images/bird-4.png); }
+.bird-5 { background-image: url(images/bird-5.png); }
+@-webkit-keyframes wind {
+  from {
+    -webkit-transform: skew(0) rotate(-20deg);
+  }
+  20% {
+    -webkit-transform: skew(30deg) rotate(-5deg);
+  }
+  50% {
+    -webkit-transform: skew(10deg) rotate(5deg);
+  }
+  to {
+    -webkit-transform: skew(20deg) rotate(-10deg);
+  }
+}
+.grass {
+  -webkit-animation: wind 5s alternate infinite;
+}
