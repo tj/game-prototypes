@@ -1,6 +1,14 @@
 
 var o = $;
 
+// debug mode
+
+o(function(){
+  o('body').addClass('debug');
+});
+
+// draggable assets
+
 o(function(){
   var help = o('#help').hide();
 

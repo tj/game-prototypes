@@ -1,5 +1,7 @@
 
-// cat 
+var o = $;
+
+// cat
 
 o(function(){
   function walk() {

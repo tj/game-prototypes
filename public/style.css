@@ -137,7 +137,11 @@ body {
   left: 692px;
   -webkit-transform: rotate(-20deg);
 }
+.debug #help {
+  display: block;
+}
 #help {
+  display: none;
   position: absolute;
   font: 11px arial;
   padding: 5px;
