@@ -151,22 +151,6 @@ body {
   -webkit-border-radius: 3px;
   color: white;
 }
-#bird-1 {
-  top: 103px;
-  left: 310px;
-}
-#bird-2 {
-  top: 93px;
-  lefT: 272px;
-  -webkit-transform: scale(.75);
-  opacity: .75;
-}
-#bird-3 {
-  top: 85px;
-  left: 240px;
-  -webkit-transform: scale(.50);
-  opacity: .5;
-}
 .bird {
   position: absolute;
   top: 50px;
