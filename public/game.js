@@ -41,11 +41,22 @@ o(function(){
 o(function(){
   var birds = document.querySelectorAll('.bird');
   birds.each = [].forEach;
-  birds.each(function(el){
-    move(el)
-      .add('top', 50)
-      .end();
-  });
+  function loop() {
+    birds.each(function(el){
+      move(el)
+        .y(0)
+        .x(window.innerWidth / 2)
+        .duration('8s')
+        .then()
+          .duration('8s')
+          .x(-window.innerWidth / 2)
+          .then(loop)
+          .pop()
+        .end();
+    });
+  }
+
+  loop();
 });
 
 // hills

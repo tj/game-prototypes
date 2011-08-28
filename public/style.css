@@ -1,5 +1,6 @@
 body {
   background: url(images/bg.jpg);
+  overflow: hidden;
 }
 #guy {
   position: absolute;
