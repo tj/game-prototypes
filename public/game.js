@@ -46,12 +46,10 @@ o(function(){
 
   function loop() {
     birds.each(function(el){
-      var half = window.innerWidth / 2
-        , x = max(half / 2, Math.random() * half | 0)
+      var width = window.innerWidth
+        , x = max(width / 2, Math.random() * width | 0)
         , duration = max(5000, Math.random() * 8000 | 0)
-        , y = Math.random() * 100 | 0;
-
-      if (y > 50) y = -y;
+        , y = Math.random() * 200 | 0;
 
       move(el)
         .y(y)
