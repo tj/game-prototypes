@@ -142,6 +142,7 @@ o(function(){
   // when idle look at the chaton
   setInterval(function(){
     if (!prev) {
+      // TODO: transition
       var off = o('#cat').offset();
       lookat(off.left, off.top);
     }
