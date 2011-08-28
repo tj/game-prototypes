@@ -36,6 +36,18 @@ o(function(){
   });
 });
 
+// bird movement
+
+o(function(){
+  var birds = document.querySelectorAll('.bird');
+  birds.each = [].forEach;
+  birds.each(function(el){
+    move(el)
+      .add('top', 50)
+      .end();
+  });
+});
+
 // hills
 
 o(function(){

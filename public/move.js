@@ -53,7 +53,7 @@
    * Library version.
    */
 
-  exports.move.version = '0.0.2';
+  exports.move.version = '0.0.3';
 
   /**
    * Defaults.
@@ -87,12 +87,13 @@
    *       return jQuery(selector).get(0);
    *     };
    *
-   * @param {String} selector
+   * @param {Object|String} selector
    * @return {Element}
    * @api public
    */
 
   move.select = function(selector){
+    if ('string' != typeof selector) return selector;
     return document.getElementById(selector)
       || document.querySelectorAll(selector)[0];
   };
