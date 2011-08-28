@@ -111,7 +111,7 @@ o(function(){
     , gox = go.left
     , goy = go.top;
 
-  o(document).mousemove(function(e){
+  function lookat(x, y) {
     var lebo = leftEyeBounds.offset()
       , leby = lebo.top
       , lebx = lebo.left
@@ -124,8 +124,8 @@ o(function(){
       , rebw = rightEyeBounds.width()
       , rebh = rightEyeBounds.height();
 
-    var x = e.clientX + 5
-      , y = e.clientY + 5;
+    x += 5;
+    y += 5;
 
     var skew = max(-10, min(2, (gox - x) *.02));
     guy.css('-webkit-transform', 'skew(' + skew + 'deg)');
@@ -137,5 +137,13 @@ o(function(){
 
     rightEye.css('top', min(rebh, max(0, y - reby)));
     rightEye.css('left', min(rebw, max(0, x - rebx)));
+  }
+
+  setInterval(function(){
+    
+  }, 100);
+
+  o(document).mousemove(function(e){
+    lookat(e.clientX, e.clientY);
   });
 });
