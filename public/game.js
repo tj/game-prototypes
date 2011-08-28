@@ -70,6 +70,7 @@ o(function(){
 // hills
 
 o(function(){
+  // TODO: separate fences for different intensities
   var hills = o('.hill, #fence')
     , intensity = .005
     , offsets = hills.map(function(i){
