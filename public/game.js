@@ -44,11 +44,16 @@ o(function(){
   var birds = document.querySelectorAll('.bird');
   birds.each = [].forEach;
   function loop() {
-    birds.each(function(el, i){
-      var x = window.innerWidth / 2 + i * 50
-        , duration = max(5000, Math.random() * 8000 | 0);
+    birds.each(function(el){
+      var half = window.innerWidth / 2
+        , x = max(half / 2, Math.random() * half | 0)
+        , duration = max(5000, Math.random() * 8000 | 0)
+        , y = Math.random() * 100 | 0;
+
+      if (y > 50) y = -y;
+
       move(el)
-        .y(0)
+        .y(y)
         .x(x)
         .duration(duration)
         .then()
