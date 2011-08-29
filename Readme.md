@@ -22,3 +22,11 @@
   You can also include _tool.js_ allowing you to position assets.
 
  ![](http://f.cl.ly/items/3x09401g2a1i3l3a2V2Y/Screenshot.png) 
+
+## Todo
+
+  - proper engine structure
+  - ditch jQuery, no need for it
+  - preload scene assets
+  - more character interaction
+  - less spaghetti
