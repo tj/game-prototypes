@@ -2,7 +2,7 @@
 # Game Prototypes
 
  A collection (currently one) of game prototypes built
- with "html 5" technologies.
+ with "html 5" technologies. Read more in this [blog post](http://tjholowaychuk.com/post/9524129814/game-prototyping-with-javascript-css3).
 
 ## Character
 
