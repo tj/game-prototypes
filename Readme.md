@@ -6,6 +6,8 @@
 
 ## Character
 
+  ![](http://f.cl.ly/items/3x09401g2a1i3l3a2V2Y/Screenshot.png) 
+
   This prototype consists of a character with some crude
   CSS animation, as well as looking at the cursor. Using
   CSS transitions on the eyes they move smooth like you
@@ -21,7 +23,6 @@
   
   You can also include _tool.js_ allowing you to position assets.
 
- ![](http://f.cl.ly/items/3x09401g2a1i3l3a2V2Y/Screenshot.png) 
 
 ## Todo
 
