@@ -379,13 +379,23 @@
     return this;
   };
 
+  /*
+   * Checks if vendor property is set, vendor webkit is implied and hardcoded
+   *
+   * @param {String} prop
+   */
   Move.prototype.hasProperty = function(prop) {
-    return typeof this._props[prop] !== 'undefined';
+    return typeof this._props['-webkit-' + prop] !== 'undefined';
   };
 
+  /*
+   * Gets the value of a vendor property, vendor webkit is implied and hardcoded
+   *
+   * @param {String} prop
+   */
   Move.prototype.getProperty = function(prop) {
-    if( typeof this._props[prop] !== 'undefined' ) {
-      return this._props[prop];
+    if( typeof this._props['-webkit-' + prop] !== 'undefined' ) {
+      return this._props['-webkit-' + prop];
     }
   };
 
