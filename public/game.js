@@ -1,10 +1,11 @@
 
-  var min = Math.min
+  var o = $
+  , min = Math.min
   , max = Math.max;
 
 // cat
 
-$(function(){
+o(function(){
   function walk() {
     var dirx = ['sub', 'add'][Math.random() * 2 | 0]
       , diry = ['sub', 'add'][Math.random() * 2 | 0];
@@ -13,7 +14,7 @@ $(function(){
       [dirx]('left', Math.random() * 30 | 0)
       [diry]('top', Math.random() * 30 | 0)
       .contain({
-        top : '+430-435' // maintain cat at least 430px from top
+        top : '+430-460' // maintain cat at least 430px and no more than 460px from top
       })
       .duration('1s')
       .ease('out')
@@ -29,7 +30,7 @@ $(function(){
 
 // bird sprites
 
-$(function(){
+o(function(){
   var birds = document.querySelectorAll('.bird');
   birds.each = [].forEach;
   birds.each(function(bird){
@@ -42,7 +43,7 @@ $(function(){
 
 // bird movement
 
-$(function(){
+o(function(){
   var birds = document.querySelectorAll('.bird');
   birds.each = [].forEach;
 
@@ -71,23 +72,23 @@ $(function(){
 
 // hills
 
-$(function(){
+o(function(){
   // TODO: separate fences for different intensities
-  var hills = $('.hill')
+  var hills = o('.hill')
     , intensity = .005
     , offsets = hills.map(function(i){
-      off = $(this).offset();
+      off = o(this).offset();
       off.intensity = intensity / ++i;
       return off;
     });
 
-  $(document).mousemove(function(e){
+  o(document).mousemove(function(e){
     var x = e.clientX
       , y = e.clientY;
 
     hills.each(function(i){
       var off = offsets[i];
-      $(this).css({
+      o(this).css({
           top: off.top
         , left: off.left - x * off.intensity
       });
@@ -97,14 +98,14 @@ $(function(){
 
 // guy
 
-$(function(){
-  var guy = $('#guy')
-    , cat = $('#cat')
-    , hat = $('#guy-hat')
-    , leftEye = $('#guy-eye-left')
-    , rightEye = $('#guy-eye-right')
-    , leftEyeBounds = $('#guy-eye-left-bounds')
-    , rightEyeBounds = $('#guy-eye-right-bounds')
+o(function(){
+  var guy = o('#guy')
+    , cat = o('#cat')
+    , hat = o('#guy-hat')
+    , leftEye = o('#guy-eye-left')
+    , rightEye = o('#guy-eye-right')
+    , leftEyeBounds = o('#guy-eye-left-bounds')
+    , rightEyeBounds = o('#guy-eye-right-bounds')
     , min = Math.min
     , max = Math.max
     , dx = 10
@@ -150,7 +151,7 @@ $(function(){
   setInterval(function(){
     if (!prev) {
       // TODO: transition
-      var off = $('#cat').offset();
+      var off = o('#cat').offset();
       lookat(off.left, off.top);
     }
     prev = null;
@@ -158,7 +159,7 @@ $(function(){
 
   // look at cursor
   var prev;
-  $(document).mousemove(function(e){
+  o(document).mousemove(function(e){
     prev = e;
     lookat(e.clientX, e.clientY);
   });
