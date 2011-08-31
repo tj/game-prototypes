@@ -380,22 +380,22 @@
   };
 
   /*
-   * Checks if vendor property is set, vendor webkit is implied and hardcoded
+   * Checks if position property is set
    *
    * @param {String} prop
    */
-  Move.prototype.hasProperty = function(prop) {
-    return typeof this._props['-webkit-' + prop] !== 'undefined';
+  Move.prototype.hasPositionProperty = function(prop) {
+    return  'undefined' !== typeof this._props[prop];
   };
 
   /*
-   * Gets the value of a vendor property, vendor webkit is implied and hardcoded
+   * Gets the value of a position property
    *
    * @param {String} prop
    */
-  Move.prototype.getProperty = function(prop) {
-    if( typeof this._props['-webkit-' + prop] !== 'undefined' ) {
-      return this._props['-webkit-' + prop];
+  Move.prototype.getPositionProperty = function(prop) {
+    if( typeof this._props[prop] !== 'undefined' ) {
+      return this._props[prop];
     }
   };
 
@@ -440,20 +440,16 @@
       // selector containment
     }
     else if( typeof container === 'object' ) {
-      if( $.inArray('top',Object.keys(container)) )
-      {
+      if( typeof container.top !== 'undefined' ) {
         this.setContainment('top',container.top);
       }
-      if( $.inArray('right',Object.keys(container)) )
-      {
+      if( typeof container.right !== 'undefined' ) {
         this.setContainment('right',container.right);
       }
-      if( $.inArray('bottom',Object.keys(container)) )
-      {
-        this.setContainment('bottom',container.top);
+      if( typeof container.bottom !== 'undefined' ) {
+        this.setContainment('bottom',container.bottom);
       }
-      if( $.inArray('left',Object.keys(container)) )
-      {
+      if( typeof container.left !== 'undefined' ) {
         this.setContainment('left',container.left);
       }
     }
@@ -485,6 +481,33 @@
     return this;
   };
 
+  Containment.prototype.applyContainment = function(move) {
+    $.each(this._prop, function(prop, val) {
+      if (move.hasPositionProperty(prop)) {
+        var operator = val.split('')[0]
+          , value = parseInt(val.split('').slice(1).join(''))
+          , move_property = parseInt(move.getPositionProperty(prop).replace(/(.*)px$/,'$1'))
+          ;
+        if( operator === '+' )
+        {
+          // apply greater than
+          if( move_property < value )
+          {
+            move.set(prop,value);
+          }
+        }
+        else if( operator === '-' )
+        {
+          // apply less than
+          if( move_property > value )
+          {
+            move.set(prop,value);
+          }
+        }
+      }
+    }.bind(this));
+  };
+
   /**
    * Get containment singleton
    *
@@ -508,7 +531,6 @@
    */
   Move.prototype.setContainment = function(prop, val)
   {
-    console.log(this.getContainment());
     return this.getContainment().set(prop,val);
   };
 
@@ -624,12 +646,6 @@
    */
 
   Move.prototype.then = function(fn){
-    /*
-    if( $( this.el ).attr('id')  === 'cat' )
-    {
-      console.log(fn);
-    }
-    */
     // invoke .end()
     if (fn instanceof Move) {
       this.on('end', function(){

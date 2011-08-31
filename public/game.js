@@ -10,11 +10,11 @@ $(function(){
       , diry = ['sub', 'add'][Math.random() * 2 | 0];
 
     move('#cat')
+      [dirx]('left', Math.random() * 30 | 0)
+      [diry]('top', Math.random() * 30 | 0)
       .contain({
         top : '+430' // maintain cat at least 430px from top
       })
-      [dirx]('left', Math.random() * 30 | 0)
-      [diry]('top', Math.random() * 30 | 0)
       .duration('1s')
       .ease('out')
       .then()
