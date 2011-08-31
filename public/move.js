@@ -413,6 +413,83 @@
     return this;
   };
 
+  Move.prototype.contain = function(container)
+  {
+    if( typeof container === 'string' )
+    {
+      // selector containment
+    }
+    else if( typeof container === 'object' ) {
+      if( $.inArray('top',Object.keys(container)) )
+      {
+        this.setContainment('top',container.top);
+      }
+      if( $.inArray('right',Object.keys(container)) )
+      {
+        this.setContainment('right',container.right);
+      }
+      if( $.inArray('bottom',Object.keys(container)) )
+      {
+        this.setContainment('bottom',container.top);
+      }
+      if( $.inArray('left',Object.keys(container)) )
+      {
+        this.setContainment('left',container.left);
+      }
+    }
+    console.log(this.getContainment());
+    // return for chaining
+    return this;
+  };
+
+  /*
+   * Containment constructor, class for containing moving objects
+   *
+   */
+  Containment = function() {
+    // stub
+  }
+
+  /*
+   * Set containment property
+   *
+   * @param {String} prop
+   * @param {String} val
+   */
+  Containment.prototype.set = function(prop,val) {
+    var _prop = this._prop || {};
+    _prop[prop] = val;
+    this._prop = _prop;
+    return this;
+  };
+
+  /**
+   * Get containment singleton
+   *
+   * @api public
+   */
+  Move.prototype.getContainment = function()
+  {
+    if( 'undefined' === typeof this._containment )
+    {
+      this._containment = new Containment;
+    }
+    return this._containment;
+  }
+
+  /**
+   * Set containment property
+   *
+   * @param {String} prop
+   * @param {String} val
+   * @return {Containment} for chaining
+   */
+  Move.prototype.setContainment = function(prop, val)
+  {
+    console.log(this.getContainment());
+    return this.getContainment().set(prop,val);
+  };
+
   /**
    * Increment `prop` by `val`, deferred until `.end()` is invoked
    * and adds the property to the list of transition props.
@@ -525,6 +602,12 @@
    */
 
   Move.prototype.then = function(fn){
+    /*
+    if( $( this.el ).attr('id')  === 'cat' )
+    {
+      console.log(fn);
+    }
+    */
     // invoke .end()
     if (fn instanceof Move) {
       this.on('end', function(){
@@ -536,6 +619,7 @@
     // chain
     } else {
       var clone = new Move(this.el);
+      // inherit transforms, not sure why
       clone._transforms = this._transforms.slice(0);
       this.then(clone);
       clone.parent = this;
