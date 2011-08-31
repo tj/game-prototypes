@@ -1,4 +1,3 @@
-var o = $;
 /*!
  * move
  * Copyright(c) 2011 TJ Holowaychuk <tj@vision-media.ca>
@@ -288,7 +287,7 @@ var o = $;
    */
 
   Move.prototype.scaleX = function(n){
-    return this.transform('scaleX(' + n + ')')
+    return this.transform('scaleX(' + n + ')');
   };
 
   /**
@@ -300,7 +299,7 @@ var o = $;
    */
 
   Move.prototype.scaleY = function(n){
-    return this.transform('scaleY(' + n + ')')
+    return this.transform('scaleY(' + n + ')');
   };
 
   /**
@@ -454,10 +453,8 @@ var o = $;
           ;
         
         this.contain({
-          left : '+' + left,
-          top : '+' + top,
-          right : '-' + right,
-          bottom : '-' + bottom
+          left : '+' + left + '-' + right,
+          top : '+' + top + '-' + bottom,
         });
       }
     }
@@ -743,9 +740,7 @@ var o = $;
 
     // emit "start" event
     this.emit('start');
-    if( $(this.el).attr('id') === 'cat' && 'undefined' !== typeof this.parent ) {
-      console.log('transforming');
-    }
+
     // transforms
     if (this._transforms.length) {
       this.setVendorProperty('transform', this._transforms.join(' '));

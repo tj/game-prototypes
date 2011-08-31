@@ -13,9 +13,12 @@ o(function(){
     move('#cat')
       [dirx]('left', Math.random() * 30 | 0)
       [diry]('top', Math.random() * 30 | 0)
+      /*
       .contain({
         top : '+430-460' // maintain cat at least 430px and no more than 460px from top
       })
+      */
+      .contain('#cat_box')
       .duration('1s')
       .ease('out')
       .then()
