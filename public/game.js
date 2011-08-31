@@ -14,8 +14,13 @@ o(function(){
       [dirx]('left', Math.random() * 30 | 0)
       [diry]('top', Math.random() * 30 | 0)
       /*
+      // will translate to top attr
       .contain({
-        top : '+430-460' // maintain cat at least 430px and no more than 460px from top
+        bottom : '+30-50' 
+      })
+      // maintain cat at least 430px and no more than 460px from top
+      .contain({
+        top : '+430-460' 
       })
       */
       .contain('#cat_box')

@@ -384,7 +384,14 @@
    * @param {String} prop
    */
   Move.prototype.hasPositionProperty = function(prop) {
-    return  'undefined' !== typeof this._props[prop];
+    if( prop === 'top' || prop === 'bottom' )
+    {
+      return 'undefined' !== typeof this._props['top'] || 'undefined' !== typeof this._props['bottom'];
+    }
+    if( prop === 'left' || prop === 'right' )
+    {
+      return 'undefined' !== typeof this._props['left'] || 'undefined' !== typeof this._props['right'];
+    }
   };
 
   /*
@@ -538,21 +545,63 @@
 
   Containment.prototype.applyPropertyContainment = function(move,operator,prop,value)
   {
-    var move_property = move_property = parseInt(move.getPositionProperty(prop).replace(/(.*)px$/,'$1'));
+    var move_position = move.translatePosition(prop,value);
     if( operator === '+' )
     {
       // apply greater than
-      if( move_property < value )
+      if( move_position.el_value < move_position.dest_value )
       {
-        move.set(prop,value);
+        console.log(move_position.el_value + ' < ' + move_position.dest_value);
+        move.set(move_position.property,move_position.dest_value);
       }
     }
     else if( operator === '-' )
     {
       // apply less than
-      if( move_property > value )
+      if( move_position.el_value > move_position.dest_value )
       {
-        move.set(prop,value);
+        console.log(move_position.el_value + ' > ' + move_position.dest_value);
+        move.set(move_position.property,move_position.dest_value);
+      }
+    }
+  }
+
+  Move.prototype.translatePosition = function(prop,value)
+  {
+    if (typeof this._props[prop] !== 'undefined') {
+      // return as-is
+      return {
+        property: prop,
+        dest_value: value,
+        el_value: parseInt(this.getPositionProperty(prop).replace(/(.*)px$/,'$1'))
+      };
+    }
+    else {
+      // translate
+      var object_attr = (prop === 'top' || prop === 'bottom') ? 'height' : 'width';
+      // set converse property
+      var property = 'top';
+      if( prop !== 'bottom' )
+      {
+        if( $.inArray(prop,['left','right']) )
+        {
+          property = (prop === 'left') ? 'right' : 'left';
+        } else {
+          property = 'bottom';
+        }
+      }
+      var window_val = $(document)[object_attr]();
+      console.log([window_val,document]);
+      var object_val = $(this.el)[object_attr]();
+      var converse_el_val = parseInt(this.getPositionProperty(property).replace(/(.*)px$/,'$1'));
+      var translated_el_val =  window_val - converse_el_val - object_val;
+      var translated_dest_val = window_val - value - object_val;
+      console.log('converting ' + prop + ':' + converse_el_val + ' => ' + translated_el_val + ', window:' + window_val + ',object:' + object_val);
+      console.log('converting ' + property + ':' + value + ' => ' + translated_dest_val + ', window:' + window_val + ',object:' + object_val);
+      return {
+        property: property,
+        el_value: translated_el_val,
+        dest_value: translated_dest_val
       }
     }
   }
