@@ -433,11 +433,33 @@
     return this;
   };
 
+  /*
+   * Set containment for Move object
+   *
+   * @param {Object} container
+   */
   Move.prototype.contain = function(container)
   {
     if( typeof container === 'string' )
     {
       // selector containment
+      var container = $(container);
+      if( container.length > 0 )
+      {
+        var offset = container.offset()
+          , left = offset.left
+          , top = offset.top
+          , right = left + container.width()
+          , bottom = top + container.height()
+          ;
+        
+        this.contain({
+          left : '+' + left,
+          top : '+' + top,
+          right : '-' + right,
+          bottom : '-' + bottom
+        });
+      }
     }
     else if( typeof container === 'object' ) {
       if( typeof container.top !== 'undefined' ) {
@@ -466,7 +488,7 @@
    */
   Containment = function() {
     // stub
-  }
+  };
 
   /*
    * Set containment property
@@ -481,32 +503,62 @@
     return this;
   };
 
+  /*
+   * Apply containment for each containment property, allows for competing constraints for single properties, as well
+   *
+   * @param {Move} move
+   * TODO: Allow for competing, converse properties when only a single property is set for x and y
+   */
   Containment.prototype.applyContainment = function(move) {
     $.each(this._prop, function(prop, val) {
-      if (move.hasPositionProperty(prop)) {
-        var operator = val.split('')[0]
-          , value = parseInt(val.split('').slice(1).join(''))
-          , move_property = parseInt(move.getPositionProperty(prop).replace(/(.*)px$/,'$1'))
-          ;
-        if( operator === '+' )
+      if( move.hasPositionProperty(prop) ) {
+        var operations = {};
+        operations[val[0]] = {
+          value : parseInt(val.split('').slice(1).join('')),
+          prop : prop
+        };
+        // two constraints
+        var split_vals = val.split(/[\+\-]/);
+        if( split_vals.length > 2 )
         {
-          // apply greater than
-          if( move_property < value )
-          {
-            move.set(prop,value);
-          }
+          var second_attr = (val.indexOf('+') > val.indexOf('-')) ? '+' : '-';
+          operations = {};
+          operations[val[0]] = {
+            value : split_vals[1],
+            prop : prop
+          };
+          operations[second_attr] = {
+            value : split_vals[2],
+            prop : prop
+          };
         }
-        else if( operator === '-' )
-        {
-          // apply less than
-          if( move_property > value )
-          {
-            move.set(prop,value);
-          }
-        }
+        $.each(operations, function(operator, operation) {
+          this.applyPropertyContainment(move,operator,operation.prop,operation.value);
+        }.bind(this));
       }
     }.bind(this));
   };
+
+  Containment.prototype.applyPropertyContainment = function(move,operator,prop,value)
+  {
+    var move_property = move_property = parseInt(move.getPositionProperty(prop).replace(/(.*)px$/,'$1'));
+    if( operator === '+' )
+    {
+      // apply greater than
+      if( move_property < value )
+      {
+        move.set(prop,value);
+      }
+    }
+    else if( operator === '-' )
+    {
+      // apply less than
+      if( move_property > value )
+      {
+        move.set(prop,value);
+      }
+    }
+  }
 
   /**
    * Get containment singleton
@@ -691,7 +743,9 @@
 
     // emit "start" event
     this.emit('start');
-
+    if( $(this.el).attr('id') === 'cat' && 'undefined' !== typeof this.parent ) {
+      console.log('transforming');
+    }
     // transforms
     if (this._transforms.length) {
       this.setVendorProperty('transform', this._transforms.join(' '));

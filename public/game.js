@@ -13,7 +13,7 @@ $(function(){
       [dirx]('left', Math.random() * 30 | 0)
       [diry]('top', Math.random() * 30 | 0)
       .contain({
-        top : '+430' // maintain cat at least 430px from top
+        top : '+430-435' // maintain cat at least 430px from top
       })
       .duration('1s')
       .ease('out')
