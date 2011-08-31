@@ -379,6 +379,16 @@
     return this;
   };
 
+  Move.prototype.hasProperty = function(prop) {
+    return typeof this._props[prop] !== 'undefined';
+  };
+
+  Move.prototype.getProperty = function(prop) {
+    if( typeof this._props[prop] !== 'undefined' ) {
+      return this._props[prop];
+    }
+  };
+
   /**
    * Set a vendor prefixed `prop` with the given `val`.
    *
@@ -437,7 +447,9 @@
         this.setContainment('left',container.left);
       }
     }
-    console.log(this.getContainment());
+    this.on('start',function() {
+      this.getContainment().applyContainment(this)
+    }.bind(this));
     // return for chaining
     return this;
   };
