@@ -1,5 +1,5 @@
 
-var o = $
+  var o = $
   , min = Math.min
   , max = Math.max;
 
@@ -13,6 +13,17 @@ o(function(){
     move('#cat')
       [dirx]('left', Math.random() * 30 | 0)
       [diry]('top', Math.random() * 30 | 0)
+      /*
+      // will translate to top attr
+      .contain({
+        bottom : '+30-50' 
+      })
+      // maintain cat at least 430px and no more than 460px from top
+      .contain({
+        top : '+430-460' 
+      })
+      */
+      .contain('#cat_box')
       .duration('1s')
       .ease('out')
       .then()
@@ -107,6 +118,10 @@ o(function(){
     , max = Math.max
     , dx = 10
     , dy = 2;
+
+  cat.click(function() {
+    alert('mrrrrrow');
+  });
 
   var go = guy.offset()
     , gox = go.left

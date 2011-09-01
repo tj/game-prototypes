@@ -1,53 +1,48 @@
-
-var o = $;
-
 // debug mode
+(function($) {
+	$(function(){
+	  $('body').addClass('debug');
 
-o(function(){
-  o('body').addClass('debug');
-});
+		// draggable assets
+		var help = $('#help').hide();
 
-// draggable assets
+	  var drag
+		, start;
 
-o(function(){
-  var help = o('#help').hide();
+	  $('body *').mousedown(function(e){
+		drag = $(this);
+		start = e;
+		help.find('.name').text(drag.attr('id') + ' - ');
+	  }).hover(function(){
+		$(this).css('-webkit-box-shadow', 'inset 0 0 0 1px rgba(255,0,0,.5)');
+	  }).mouseout(function(){
+		$(this).css('-webkit-box-shadow', 'none');
+	  });
 
-  var drag
-    , start;
+	  $(document).mousemove(function(e){
+		if (!drag) return;
+		var x = e.clientX - start.offsetX
+		  , y = e.clientY - start.offsetY;
 
-  o('body *').mousedown(function(e){
-    drag = o(this);
-    start = e;
-    help.find('.name').text(drag.attr('id') + ' - ');
-  }).hover(function(){
-    o(this).css('-webkit-box-shadow', 'inset 0 0 0 1px rgba(255,0,0,.5)');
-  }).mouseout(function(){
-    o(this).css('-webkit-box-shadow', 'none');
-  });
+		drag.css({
+			left: x + 'px'
+		  , top: y + 'px'
+		});
 
-  o(document).mousemove(function(e){
-    if (!drag) return;
-    var x = e.clientX - start.offsetX
-      , y = e.clientY - start.offsetY;
+		help.show();
+		help.find('.pos').text('top: ' + y + 'px; left: ' + x + 'px;');
 
-    drag.css({
-        left: x + 'px'
-      , top: y + 'px'
-    });
+		x += 5;
+		y += 5;
+		help.css({
+			left: x + 'px'
+		  , top: y + 'px'
+		});
+	  });
 
-    help.show();
-    help.find('.pos').text('top: ' + y + 'px; left: ' + x + 'px;');
-
-    x += 5;
-    y += 5;
-    help.css({
-        left: x + 'px'
-      , top: y + 'px'
-    });
-  });
-
-  o(document).mouseup(function(){
-    if (drag) drag.css('border', 'none');
-    drag = null;
-  });
-});
+	  $(document).mouseup(function(){
+		if (drag) drag.css('border', 'none');
+		drag = null;
+	  });
+	});
+})( jQuery );

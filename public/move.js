@@ -1,4 +1,3 @@
-
 /*!
  * move
  * Copyright(c) 2011 TJ Holowaychuk <tj@vision-media.ca>
@@ -288,7 +287,7 @@
    */
 
   Move.prototype.scaleX = function(n){
-    return this.transform('scaleX(' + n + ')')
+    return this.transform('scaleX(' + n + ')');
   };
 
   /**
@@ -300,7 +299,7 @@
    */
 
   Move.prototype.scaleY = function(n){
-    return this.transform('scaleY(' + n + ')')
+    return this.transform('scaleY(' + n + ')');
   };
 
   /**
@@ -379,6 +378,33 @@
     return this;
   };
 
+  /*
+   * Checks if position property is set
+   *
+   * @param {String} prop
+   */
+  Move.prototype.hasPositionProperty = function(prop) {
+    if( prop === 'top' || prop === 'bottom' )
+    {
+      return 'undefined' !== typeof this._props['top'] || 'undefined' !== typeof this._props['bottom'];
+    }
+    if( prop === 'left' || prop === 'right' )
+    {
+      return 'undefined' !== typeof this._props['left'] || 'undefined' !== typeof this._props['right'];
+    }
+  };
+
+  /*
+   * Gets the value of a position property
+   *
+   * @param {String} prop
+   */
+  Move.prototype.getPositionProperty = function(prop) {
+    if( typeof this._props[prop] !== 'undefined' ) {
+      return this._props[prop];
+    }
+  };
+
   /**
    * Set a vendor prefixed `prop` with the given `val`.
    *
@@ -411,6 +437,199 @@
     if ('number' == typeof val && map[prop]) val += map[prop]; 
     this._props[prop] = val;
     return this;
+  };
+
+  /*
+   * Set containment for Move object
+   *
+   * @param {Object} container
+   */
+  Move.prototype.contain = function(container)
+  {
+    if( typeof container === 'string' )
+    {
+      // selector containment
+      var container = $(container);
+      if( container.length > 0 )
+      {
+        var offset = container.offset()
+          , left = offset.left
+          , top = offset.top
+          , right = left + container.width()
+          , bottom = top + container.height()
+          ;
+        
+        this.contain({
+          left : '+' + left + '-' + right,
+          top : '+' + top + '-' + bottom,
+        });
+      }
+    }
+    else if( typeof container === 'object' ) {
+      if( typeof container.top !== 'undefined' ) {
+        this.setContainment('top',container.top);
+      }
+      if( typeof container.right !== 'undefined' ) {
+        this.setContainment('right',container.right);
+      }
+      if( typeof container.bottom !== 'undefined' ) {
+        this.setContainment('bottom',container.bottom);
+      }
+      if( typeof container.left !== 'undefined' ) {
+        this.setContainment('left',container.left);
+      }
+    }
+    this.on('start',function() {
+      this.getContainment().applyContainment(this)
+    }.bind(this));
+    // return for chaining
+    return this;
+  };
+
+  /*
+   * Containment constructor, class for containing moving objects
+   *
+   */
+  Containment = function() {
+    // stub
+  };
+
+  /*
+   * Set containment property
+   *
+   * @param {String} prop
+   * @param {String} val
+   */
+  Containment.prototype.set = function(prop,val) {
+    var _prop = this._prop || {};
+    _prop[prop] = val;
+    this._prop = _prop;
+    return this;
+  };
+
+  /*
+   * Apply containment for each containment property, allows for competing constraints for single properties, as well
+   *
+   * @param {Move} move
+   * TODO: Allow for competing, converse properties when only a single property is set for x and y
+   */
+  Containment.prototype.applyContainment = function(move) {
+    $.each(this._prop, function(prop, val) {
+      if( move.hasPositionProperty(prop) ) {
+        var operations = {};
+        operations[val[0]] = {
+          value : parseInt(val.split('').slice(1).join('')),
+          prop : prop
+        };
+        // two constraints
+        var split_vals = val.split(/[\+\-]/);
+        if( split_vals.length > 2 )
+        {
+          var second_attr = (val.indexOf('+') > val.indexOf('-')) ? '+' : '-';
+          operations = {};
+          operations[val[0]] = {
+            value : split_vals[1],
+            prop : prop
+          };
+          operations[second_attr] = {
+            value : split_vals[2],
+            prop : prop
+          };
+        }
+        $.each(operations, function(operator, operation) {
+          this.applyPropertyContainment(move,operator,operation.prop,operation.value);
+        }.bind(this));
+      }
+    }.bind(this));
+  };
+
+  Containment.prototype.applyPropertyContainment = function(move,operator,prop,value)
+  {
+    var move_position = move.translatePosition(prop,value);
+    if( operator === '+' )
+    {
+      // apply greater than
+      if( move_position.el_value < move_position.dest_value )
+      {
+        console.log(move_position.el_value + ' < ' + move_position.dest_value);
+        move.set(move_position.property,move_position.dest_value);
+      }
+    }
+    else if( operator === '-' )
+    {
+      // apply less than
+      if( move_position.el_value > move_position.dest_value )
+      {
+        console.log(move_position.el_value + ' > ' + move_position.dest_value);
+        move.set(move_position.property,move_position.dest_value);
+      }
+    }
+  }
+
+  Move.prototype.translatePosition = function(prop,value)
+  {
+    if (typeof this._props[prop] !== 'undefined') {
+      // return as-is
+      return {
+        property: prop,
+        dest_value: value,
+        el_value: parseInt(this.getPositionProperty(prop).replace(/(.*)px$/,'$1'))
+      };
+    }
+    else {
+      // translate
+      var object_attr = (prop === 'top' || prop === 'bottom') ? 'height' : 'width';
+      // set converse property
+      var property = 'top';
+      if( prop !== 'bottom' )
+      {
+        if( $.inArray(prop,['left','right']) )
+        {
+          property = (prop === 'left') ? 'right' : 'left';
+        } else {
+          property = 'bottom';
+        }
+      }
+      var window_val = $(document)[object_attr]();
+      console.log([window_val,document]);
+      var object_val = $(this.el)[object_attr]();
+      var converse_el_val = parseInt(this.getPositionProperty(property).replace(/(.*)px$/,'$1'));
+      var translated_el_val =  window_val - converse_el_val - object_val;
+      var translated_dest_val = window_val - value - object_val;
+      console.log('converting ' + prop + ':' + converse_el_val + ' => ' + translated_el_val + ', window:' + window_val + ',object:' + object_val);
+      console.log('converting ' + property + ':' + value + ' => ' + translated_dest_val + ', window:' + window_val + ',object:' + object_val);
+      return {
+        property: property,
+        el_value: translated_el_val,
+        dest_value: translated_dest_val
+      }
+    }
+  }
+
+  /**
+   * Get containment singleton
+   *
+   * @api public
+   */
+  Move.prototype.getContainment = function()
+  {
+    if( 'undefined' === typeof this._containment )
+    {
+      this._containment = new Containment;
+    }
+    return this._containment;
+  }
+
+  /**
+   * Set containment property
+   *
+   * @param {String} prop
+   * @param {String} val
+   * @return {Containment} for chaining
+   */
+  Move.prototype.setContainment = function(prop, val)
+  {
+    return this.getContainment().set(prop,val);
   };
 
   /**
@@ -536,6 +755,7 @@
     // chain
     } else {
       var clone = new Move(this.el);
+      // inherit transforms, not sure why
       clone._transforms = this._transforms.slice(0);
       this.then(clone);
       clone.parent = this;
