@@ -27,13 +27,14 @@ o(function(){
     , min = Math.min;
 
   function lookat(x, y) {
+    console.log(x * .1);
     move('#guy-arm-right')
-      .rotate(max(-(x * .10), -13))
+      .rotate(min(x * .1, 2))
       .duration(500)
       .end();
 
     move('#guy-arm-left')
-      .rotate(min(x * .05, 8))
+      .rotate(max(-(x * .1), -5))
       .duration(500)
       .end();
 
@@ -48,7 +49,7 @@ o(function(){
       var off = balloons.offset();
       lookat(off.left|0, off.top|0);
     }, 200);
-  }, 1000);
+  }, 700);
 })
 
 /**
