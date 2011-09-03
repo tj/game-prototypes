@@ -11,7 +11,7 @@ body {
   height: 100%;
   z-index: 1000;
   color: #555;
-  background: #1A1A1A;
+  background: #111;
   text-align: center;
 }
 #loading p {
