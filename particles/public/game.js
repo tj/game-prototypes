@@ -7,11 +7,12 @@ o = $;
 
 o(function(){
   var head = o('#guy-head')[0]
-    , balloons = o('#balloons');
+    , balloons = o('#balloons')
+    , max = Math.max;
 
   function lookat(x, y) {
     move('#guy-head')
-      .rotate(-(x * .15))
+      .rotate(max(-(x * .15), -22))
       .duration(500)
       .end();
   }
