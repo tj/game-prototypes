@@ -1,8 +1,11 @@
 
 o = $;
 
-o(function(){
+/**
+ * Guy.
+ */
 
+o(function(){
   var head = o('#guy-head')[0]
     , balloons = o('#balloons');
 
