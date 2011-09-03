@@ -2,7 +2,7 @@
 # Game Prototypes
 
  A collection (currently one) of game prototypes built
- with "html 5" technologies. Read more in this [blog post](http://files.droplr.com/files/29255412/JUdJ.Screen%20shot%202011-09-02%20at%2018%3A01%3A57.png?AWSAccessKeyId=AKIAJSVQN3Z4K7MT5U2A&Expires=1315011841&Signature=cM%2FZAdb1Kb43TSyu2BXRhIgdVkY%3D).
+ with "html 5" technologies. Read more in this [blog post](http://files.droplr.com/files/29255412/JUdJ.Screen%20shot%202011-09-02%20at%2018%3A01%3A57.png?AWSAccessKeyId=AKIAJSVQN3Z4K7MT5U2A&Expires=1315011899&Signature=TLg0jh7lLwwf9MRFsDH2AqNUmoM%3D).
 
 ## Character
 
