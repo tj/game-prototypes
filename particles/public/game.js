@@ -38,8 +38,25 @@ o(function(){
 });
 
 function moveDrop(drop) {
-  var x = Math.random() * window.innerWidth
-    , y = Math.random() * window.innerHeight;
+  var x = Math.random() * window.innerWidth * 1.5
+    , y = Math.random() * window.innerHeight * 1.5;
 
   drop.css({ left: x, top: y });
+
+  function loop() {
+    move(drop)
+      .add('left', 1000)
+      .add('top', 1000)
+      .set('opacity', 0)
+      .duration(Math.random() * 1000 | 0)
+      .then()
+        .set('left', x-1000)
+        .set('top', y-1000)
+        .set('opacity', 1)
+        .duration(0)
+        .pop()
+      .end(loop);
+  }
+
+  loop();
 }
