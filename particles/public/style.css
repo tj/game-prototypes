@@ -24,12 +24,19 @@ body {
   background: url(images/guy-head.png);
 }
 #guy-arm-left {
+  position: absolute;
+  top: 65px;
+  left: 10px;
   width: 36px;
   height: 133px;
   background: url(images/guy-arm-left.png);
 }
 #guy-arm-right {
+  position: absolute;
+  top: 60px;
+  right: 12px;
   width: 32px;
   height: 142px;
+  -webkit-transform: rotate(-3deg);
   background: url(images/guy-arm-right.png);
 }
