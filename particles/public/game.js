@@ -7,11 +7,12 @@ o = $;
 
 o(function(){
   move('#balloons')
-    .delay('2s')
     .set('top', -400)
     .set('left', 700)
     .rotate(50)
+    .delay('1s')
     .duration('20s')
+    .ease('in')
     .end();
 });
 
@@ -42,10 +43,12 @@ o(function(){
       .end();
   }
 
-  setInterval(function(){
-    var off = balloons.offset();
-    lookat(off.left|0, off.top|0);
-  }, 200);
+  setTimeout(function(){
+    setInterval(function(){
+      var off = balloons.offset();
+      lookat(off.left|0, off.top|0);
+    }, 200);
+  }, 1000);
 })
 
 /**
