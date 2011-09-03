@@ -3,6 +3,9 @@ body {
   overflow: hidden;
 }
 #balloons {
+  position: absolute;
+  top: 160px;
+  left: 80px;
   width: 223px;
   height: 433px;
   background: url(images/balloons.png);
