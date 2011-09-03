@@ -2,3 +2,28 @@ body {
   background: url(../../common/images/bg.jpg);
   overflow: hidden;
 }
+#balloons {
+  width: 223px;
+  height: 433px;
+  background: url(images/balloons.png);
+}
+#guy {
+  width: 134px;
+  height: 364px;
+  background: url(images/guy-body.png);
+}
+#guy-head {
+  width: 41px;
+  height: 65px;
+  background: url(images/guy-head.png);
+}
+#guy-arm-left {
+  width: 36px;
+  height: 133px;
+  background: url(images/guy-arm-left.png);
+}
+#guy-arm-right {
+  width: 32px;
+  height: 142px;
+  background: url(images/guy-arm-right.png);
+}
