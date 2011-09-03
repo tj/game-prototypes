@@ -8,8 +8,8 @@ body {
     left: 80px;
   }
   to {
-    top: -900px;
-    left: 500px;
+    top: -400px;
+    left: 700px;
     -webkit-transform: rotate(50deg);
   }
 }
