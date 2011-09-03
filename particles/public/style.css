@@ -19,7 +19,7 @@ body {
   width: 223px;
   height: 433px;
   background: url(images/balloons.png);
-  -webkit-animation: balloons 30s;
+  -webkit-animation: balloons 20s;
 }
 #guy {
   position: absolute;
