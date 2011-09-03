@@ -6,7 +6,7 @@
 
 ## Character
 
-  ![](http://f.cl.ly/items/3x09401g2a1i3l3a2V2Y/Screenshot.png) 
+  ![](http://d.pr/JUdJ+) 
 
   This prototype consists of a character with some crude
   CSS animation, as well as looking at the cursor. Using
