@@ -45,6 +45,7 @@ body {
   width: 41px;
   height: 65px;
   background: url(images/guy-head.png);
+  -webkit-transform-origin: 50% 75%;
 }
 #guy-arm-left {
   position: absolute;
