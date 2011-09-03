@@ -8,7 +8,8 @@ o(function(){
 
   function lookat(x, y) {
     move('#guy-head')
-      .rotate(-(x * .2))
+      .rotate(-(x * .15))
+      .duration(500)
       .end();
   }
 
