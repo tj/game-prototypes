@@ -33,6 +33,7 @@ body {
   height: 17px;
   background: url(images/guy-eye-left.png);
   -webkit-transition: top 300ms ease-out, left 300ms ease-out;
+  -moz-transition: top 300ms ease-out, left 300ms ease-out;
 }
 #guy-eye-right-bounds {
   position: absolute;
@@ -47,6 +48,7 @@ body {
   height: 11px;
   background: url(images/guy-eye-right.png);
   -webkit-transition: top 100ms ease-out, left 100ms ease-out;
+  -moz-transition: top 100ms ease-out, left 100ms ease-out;
 }
 #guy-shadow {
   position: relative;
@@ -138,6 +140,7 @@ body {
   top: 450px;
   left: 692px;
   -webkit-transform: rotate(-20deg);
+  -moz-transform: rotate(-20deg);
 }
 .debug #help {
   display: block;
@@ -150,6 +153,7 @@ body {
   z-index: 1000;
   background: rgba(0,0,0,.4);
   -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
   color: white;
 }
 .bird {
@@ -182,6 +186,21 @@ body {
     -webkit-transform: skew(20deg) rotate(-10deg);
   }
 }
+@-moz-keyframes wind {
+  from {
+    -moz-transform: skew(0) rotate(-20deg);
+  }
+  20% {
+    -moz-transform: skew(30deg) rotate(-5deg);
+  }
+  50% {
+    -moz-transform: skew(10deg) rotate(5deg);
+  }
+  to {
+    -moz-transform: skew(20deg) rotate(-10deg);
+  }
+}
 .grass {
   -webkit-animation: wind 5s alternate infinite;
+  -moz-animation: wind 5s alternate infinite;
 }
