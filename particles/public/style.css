@@ -1,0 +1,75 @@
+body {
+  background: url(../../common/images/bg.jpg);
+  overflow: hidden;
+}
+#balloons {
+  position: absolute;
+  bottom: 90px;
+  left: 90px;
+  width: 223px;
+  height: 433px;
+  background: url(images/balloons.png);
+  z-index: 20;
+  -webkit-transform: rotate(25deg);
+}
+#guy {
+  position: absolute;
+  bottom: 20px;
+  left: 40px;
+  width: 134px;
+  height: 364px;
+  background: url(images/guy-body.png);
+  z-index: 10;
+}
+#guy-shadow {
+  position: absolute;
+  bottom: -20px;
+  left: 30px;
+  width: 78px;
+  height: 80px;
+  background: url(images/guy-shadow.png);
+}
+#guy-head {
+  position: absolute;
+  top: -35px;
+  left: 40px;
+  width: 41px;
+  height: 65px;
+  background: url(images/guy-head.png);
+  -webkit-transform-origin: 50% 75%;
+}
+#guy-arm-left {
+  position: absolute;
+  top: 65px;
+  left: 10px;
+  width: 36px;
+  height: 133px;
+  background: url(images/guy-arm-left.png);
+  -webkit-transform-origin: 20px 0;
+}
+#guy-arm-right {
+  position: absolute;
+  top: 60px;
+  right: 18px;
+  width: 32px;
+  height: 142px;
+  background: url(images/guy-arm-right.png);
+  -webkit-transform-origin: 20px 0;
+  -webkit-transform: rotate(-30deg);
+}
+#grass {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 310px;
+  height: 231px;
+  background: url(images/grass.png);
+}
+.rain {
+  position: absolute;
+  width: 57px;
+  height: 71px;
+  background: url(images/rain.png);
+  opacity: .5;
+  z-index: 40;
+}
