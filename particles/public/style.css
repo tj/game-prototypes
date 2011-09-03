@@ -72,3 +72,9 @@ body {
   height: 231px;
   background: url(images/grass.png);
 }
+.rain {
+  position: absolute;
+  width: 57px;
+  height: 71px;
+  background: url(images/rain.png);
+}

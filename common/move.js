@@ -93,6 +93,7 @@
    */
 
   move.select = function(selector){
+    if (selector instanceof jQuery) return selector[0];
     if ('string' != typeof selector) return selector;
     return document.getElementById(selector)
       || document.querySelectorAll(selector)[0];
