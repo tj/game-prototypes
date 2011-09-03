@@ -77,4 +77,6 @@ body {
   width: 57px;
   height: 71px;
   background: url(images/rain.png);
+  opacity: .5;
+  z-index: 40;
 }
