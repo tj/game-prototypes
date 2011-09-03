@@ -8,11 +8,17 @@ body {
   background: url(images/balloons.png);
 }
 #guy {
+  position: absolute;
+  top: 200px;
+  left: 45%;
   width: 134px;
   height: 364px;
   background: url(images/guy-body.png);
 }
 #guy-head {
+  position: absolute;
+  top: -38px;
+  left: 40px;
   width: 41px;
   height: 65px;
   background: url(images/guy-head.png);
