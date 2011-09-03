@@ -4,11 +4,13 @@ body {
 }
 #balloons {
   position: absolute;
-  top: 160px;
-  left: 80px;
+  bottom: 90px;
+  left: 90px;
   width: 223px;
   height: 433px;
   background: url(images/balloons.png);
+  z-index: 20;
+  -webkit-transform: rotate(25deg);
 }
 #guy {
   position: absolute;
@@ -53,6 +55,7 @@ body {
   height: 142px;
   background: url(images/guy-arm-right.png);
   -webkit-transform-origin: 20px 0;
+  -webkit-transform: rotate(-30deg);
 }
 #grass {
   position: absolute;

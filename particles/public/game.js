@@ -7,11 +7,11 @@ o = $;
 
 o(function(){
   move('#balloons')
-    .set('top', -400)
+    .set('bottom', window.innerHeight)
     .set('left', 700)
-    .rotate(50)
+    .rotate(0)
     .delay('1s')
-    .duration('20s')
+    .duration('5s')
     .ease('in')
     .end();
 });
@@ -39,7 +39,7 @@ o(function(){
 
     move(head)
       .rotate(max(-(x * .15), -22))
-      .duration(500)
+      .duration('1s')
       .end();
   }
 
