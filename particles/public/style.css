@@ -54,15 +54,16 @@ body {
   width: 36px;
   height: 133px;
   background: url(images/guy-arm-left.png);
+  -webkit-transform-origin: 20px 0;
 }
 #guy-arm-right {
   position: absolute;
   top: 60px;
-  right: 12px;
+  right: 18px;
   width: 32px;
   height: 142px;
-  -webkit-transform: rotate(-3deg);
   background: url(images/guy-arm-right.png);
+  -webkit-transform-origin: 20px 0;
 }
 #grass {
   position: absolute;

@@ -8,9 +8,20 @@ o = $;
 o(function(){
   var head = o('#guy-head')[0]
     , balloons = o('#balloons')
-    , max = Math.max;
+    , max = Math.max
+    , min = Math.min;
 
   function lookat(x, y) {
+    move('#guy-arm-right')
+      .rotate(max(-(x * .10), -13))
+      .duration(500)
+      .end();
+
+    move('#guy-arm-left')
+      .rotate(min(x * .05, 8))
+      .duration(500)
+      .end();
+
     move(head)
       .rotate(max(-(x * .15), -22))
       .duration(500)
