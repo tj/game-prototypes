@@ -9,11 +9,20 @@ body {
 }
 #guy {
   position: absolute;
-  top: 200px;
-  left: 45%;
+  bottom: 20px;
+  left: 40px;
   width: 134px;
   height: 364px;
   background: url(images/guy-body.png);
+  z-index: 10;
+}
+#guy-shadow {
+  position: absolute;
+  bottom: -20px;
+  left: 30px;
+  width: 78px;
+  height: 80px;
+  background: url(images/guy-shadow.png);
 }
 #guy-head {
   position: absolute;
