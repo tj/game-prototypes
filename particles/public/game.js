@@ -2,6 +2,20 @@
 o = $;
 
 /**
+ * Balloons.
+ */
+
+o(function(){
+  move('#balloons')
+    .delay('2s')
+    .set('top', -400)
+    .set('left', 700)
+    .rotate(50)
+    .duration('20s')
+    .end();
+});
+
+/**
  * Guy.
  */
 

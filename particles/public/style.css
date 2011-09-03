@@ -2,24 +2,13 @@ body {
   background: url(../../common/images/bg.jpg);
   overflow: hidden;
 }
-@-webkit-keyframes balloons {
-  from {
-    top: 160px;
-    left: 80px;
-  }
-  to {
-    top: -400px;
-    left: 700px;
-    -webkit-transform: rotate(50deg);
-  }
-}
 #balloons {
   position: absolute;
-  top: -900px;
+  top: 160px;
+  left: 80px;
   width: 223px;
   height: 433px;
   background: url(images/balloons.png);
-  -webkit-animation: balloons 20s;
 }
 #guy {
   position: absolute;
