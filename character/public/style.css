@@ -1,6 +1,23 @@
 body {
   background: url(images/bg.jpg);
   overflow: hidden;
+  font: 14px "helvetica neue", helvetica, arial, sans-serif;
+}
+#loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  color: #555;
+  background: #1A1A1A;
+  text-align: center;
+}
+#loading p {
+  position: fixed;
+  top: 45%;
+  left: 48%;
 }
 #guy {
   position: absolute;
