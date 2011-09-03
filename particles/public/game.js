@@ -33,9 +33,9 @@ o(function(){
   while (drops--) {
     drop = o('<div class="rain"></div>');
     o('body').append(drop);
-    move(drop)
-      .set('left', Math.random() * window.innerWidth)
-      .set('top', Math.random() * window.innerHeight)
-      .end();
+    drop.css({
+        left: Math.random() * window.innerWidth
+      , top: Math.random() * window.innerHeight
+    });
   }
 });
