@@ -1,7 +1,7 @@
 
 # Game Prototypes
 
- A collection (currently one) of game prototypes built
+ A collection (currently three) of game prototypes built
  with "html 5" technologies. Read more in this [blog post](http://tjholowaychuk.com/post/9524129814/game-prototyping-with-javascript-css3).
 
 ## Character
@@ -24,10 +24,3 @@
   You can also include _tool.js_ allowing you to position assets.
 
 
-## Todo
-
-  - proper engine structure
-  - ditch jQuery, no need for it
-  - preload scene assets
-  - more character interaction
-  - less spaghetti
